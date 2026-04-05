@@ -21,7 +21,7 @@
             letter-spacing: -0.02em;
         }
 
-        /* navbar – identical to main platform (with mobile fix) */
+        /* navbar – identical to main platform (with dropdown) */
         .navbar {
             position: fixed;
             top: 20px;
@@ -90,6 +90,55 @@
             color: white;
             box-shadow: 0 4px 10px -2px rgba(0,0,0,0.2);
         }
+        /* ---- DROPDOWN (wireframes) – consistent with all pages ---- */
+        .dropdown-platform {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            background: white;
+            border-radius: 32px;
+            padding: 12px 8px;
+            width: 240px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            border: 1px solid #ecf2f9;
+            z-index: 1001;
+        }
+        .dropdown-platform:hover .dropdown-menu,
+        .dropdown-platform .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1e293b;
+            transition: 0.15s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .dropdown-item i { width: 20px; height: 20px; color: var(--brand-lime); }
+        .dropdown-item:hover {
+            background: #f1f6fc;
+        }
+        .dropdown-item.active-page {
+            background: #f1f6fc;
+            color: black;
+            font-weight: 700;
+        }
+        .dropdown-item span { margin-left: auto; font-size: 11px; color: #94a3b8; }
 
         /* page header */
         .page-header {
@@ -146,7 +195,7 @@
             margin-top: 40px;
         }
 
-        /* Mobile styles - ensure logo always visible */
+        /* Mobile styles */
         @media (max-width: 640px) {
             .navbar {
                 flex-wrap: wrap;
@@ -171,6 +220,7 @@
                 padding: 6px 16px;
                 font-size: 12px;
             }
+            .dropdown-menu { left: -40px; width: 220px; }
             .page-header h1 { font-size: 2.5rem; }
             .calendly-card { padding: 20px; }
         }
@@ -178,14 +228,32 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR (identical to main platform, Contact active) ===== -->
+<!-- ===== NAVBAR WITH DROPDOWN (Platform) and Contact active ===== -->
 <div class="navbar">
     <div class="navbar-logo">
         <img src="images/logo.png" alt="InfraHealth" onerror="this.style.display='none'; this.parentElement.innerHTML+='<span class=\'logo-fallback\'>Infra<span>Health</span></span>';">
         <span class="logo-fallback" style="display: none;">Infra<span>Health</span></span>
     </div>
     <div class="navbar-nav">
-        <a href="index.html" class="nav-link">Platform</a>
+        <!-- Platform dropdown (active state not needed on Contact page) -->
+        <div class="dropdown-platform">
+            <a href="index.html" class="nav-link">Platform</a>
+            <div class="dropdown-menu" id="platformDropdown">
+                <!-- Home (index) wireframe -->
+                <a href="index.html" class="dropdown-item">
+                    <i data-lucide="hexagon"></i> Home 
+                </a>
+                <a href="PayingforServices.html" class="dropdown-item">
+                    <i data-lucide="building"></i> Paying for services
+                </a>
+                <a href="DeliveringCare.html" class="dropdown-item">
+                    <i data-lucide="stethoscope"></i> Delivering care
+                </a>
+                <a href="SupportingPatientService.html" class="dropdown-item">
+                    <i data-lucide="user"></i> Member experiences
+                </a>
+            </div>
+        </div>
         <a href="contact.html" class="nav-link active">Contact</a>
     </div>
 </div>
@@ -214,7 +282,7 @@
 
 <!-- ===== FOOTER (exactly like main platform) ===== -->
 <footer>
-    <button class="bg-black text-white px-12 py-5 rounded-full font-extrabold text-lg hover:bg-lime-500 transition" onclick="window.location.href='contact.html';">Contact</button>
+  
     <p class="footer-note">InfraHealth © 2026</p>
 </footer>
 
