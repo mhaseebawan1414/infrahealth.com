@@ -21,7 +21,7 @@
             letter-spacing: -0.02em;
         }
 
-        /* navbar - with mobile fix */
+        /* navbar - with dropdown (professional) */
         .navbar {
             position: fixed;
             top: 20px;
@@ -90,6 +90,55 @@
             color: white;
             box-shadow: 0 4px 10px -2px rgba(0,0,0,0.2);
         }
+        /* ---- DROPDOWN (wireframes) – consistent with other pages ---- */
+        .dropdown-platform {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            background: white;
+            border-radius: 32px;
+            padding: 12px 8px;
+            width: 240px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            border: 1px solid #ecf2f9;
+            z-index: 1001;
+        }
+        .dropdown-platform:hover .dropdown-menu,
+        .dropdown-platform .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1e293b;
+            transition: 0.15s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .dropdown-item i { width: 20px; height: 20px; color: var(--brand-lime); }
+        .dropdown-item:hover {
+            background: #f1f6fc;
+        }
+        .dropdown-item.active-page {
+            background: #f1f6fc;
+            color: black;
+            font-weight: 700;
+        }
+        .dropdown-item span { margin-left: auto; font-size: 11px; color: #94a3b8; }
 
         /* diagram */
         .eco-container {
@@ -223,59 +272,76 @@
         .sub-item:hover { background: var(--brand-lime); color: black; }
         .sub-item i { width: 18px; height: 18px; }
 
-        /* left side cards */
+        /* ===== REFINED "I AM RESPONSIBLE" CARDS ===== (two cards, modern attractive) */
         .responsibility-cards {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             scroll-margin-top: 120px;
         }
-        .wf-card {
+        .role-card {
             background: white;
+            border-radius: 36px;
             padding: 32px 36px;
-            border-radius: 32px;
-            border: 1px solid #f1f5f9;
-            transition: 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #eef3f8;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 18px -6px rgba(0,0,0,0.04);
             cursor: pointer;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px -8px rgba(0,0,0,0.05);
         }
-        .wf-card:hover {
+        .role-card:hover {
             border-color: var(--brand-lime);
-            box-shadow: 0 15px 30px -12px rgba(163, 230, 53, 0.15);
+            box-shadow: 0 18px 28px -12px rgba(163, 230, 53, 0.2);
+            transform: scale(1.01);
         }
-        .wf-card.active {
-            border-color: #a3e635;
-            border-width: 2px;
-            background: #fcfef9;
+        .role-card.active {
+            border: 2px solid var(--brand-lime);
+            background: #fcfef8;
         }
-        .wf-card h4 {
-            font-size: 1.8rem;
+        .role-badge {
+            background: #edf2f7;
+            border-radius: 60px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: #334155;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .role-card h4 {
+            font-size: 2.2rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            margin-bottom: 10px;
+            line-height: 1.2;
+            margin: 8px 0 8px 0;
         }
-        .wf-card p {
+        .role-desc {
             font-size: 1.1rem;
             color: #64748b;
-            margin-bottom: 20px;
+            max-width: 500px;
         }
-        .learn-more-btn {
+        .role-action {
             background: black;
             color: white;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 60px;
-            font-size: 12px;
-            font-weight: 800;
+            font-size: 13px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: 0.2s;
+            gap: 10px;
             border: none;
-            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
         }
-        .learn-more-btn:hover {
+        .role-action:hover {
             background: var(--brand-lime);
             color: black;
         }
@@ -378,7 +444,7 @@
             font-size: 1rem;
         }
 
-        /* Mobile styles - ensure logo always visible */
+        /* Mobile styles */
         @media (max-width: 640px) {
             .navbar {
                 flex-wrap: wrap;
@@ -403,26 +469,48 @@
                 padding: 6px 16px;
                 font-size: 12px;
             }
+            .dropdown-menu { left: -40px; width: 220px; }
             .section-title { font-size: 2rem; }
             .n-payers { width: 22%; }
+            .role-card { flex-direction: column; align-items: flex-start; }
+            .role-card h4 { font-size: 1.8rem; }
+            .role-action { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR (logo + platform/contact) with mobile fix ===== -->
+<!-- ===== NAVBAR WITH DROPDOWN (wireframes) ===== -->
 <div class="navbar">
     <div class="navbar-logo">
         <img src="images/logo.png" alt="InfraHealth" onerror="this.style.display='none'; this.parentElement.innerHTML+='<span class=\'logo-fallback\'>Infra<span>Health</span></span>';">
         <span class="logo-fallback" style="display: none;">Infra<span>Health</span></span>
     </div>
     <div class="navbar-nav">
-        <a href="#platform" class="nav-link active">Platform</a>
-        <a href="http://infrahealth.com.s3-website-us-east-1.amazonaws.com/Contact.html" class="nav-link">Contact</a>
+        <!-- Platform dropdown (active state remains on "Platform") -->
+        <div class="dropdown-platform">
+            <a href="#platform" class="nav-link active" id="platformLink">Platform</a>
+            <div class="dropdown-menu" id="platformDropdown">
+                <!-- Home (current page) wireframe indicator -->
+                <a href="#" class="dropdown-item" onclick="window.location='index.html'; return false;">
+                    <i data-lucide="hexagon"></i> Home 
+                </a>
+                <a href="PayingforServices.html" class="dropdown-item active-page">
+                    <i data-lucide="building"></i> Paying for services <span>current</span>
+                </a>
+                <a href="DeliveringCare.html" class="dropdown-item">
+                    <i data-lucide="stethoscope"></i> Delivering care
+                </a>
+                <a href="SupportingPatientService.html" class="dropdown-item">
+                    <i data-lucide="user"></i> Member experiences
+                </a>
+            </div>
+        </div>
+        <a href="contact.html" class="nav-link">Contact</a>
     </div>
 </div>
 
-<!-- SECTION 1 — Persona Hero (Unified Risk Frame) -->
+<!-- SECTION 1 — Persona Hero (Unified Risk Frame) – refined headline -->
 <header id="platform" class="pt-48 pb-20 px-6 text-center">
     <div class="max-w-5xl mx-auto" data-aos="fade-up">
         <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.95] tracking-tighter mb-8">
@@ -434,7 +522,7 @@
             so decisions happen earlier and cost signals appear before risk escalates.
         </p>
         <div class="flex gap-4 justify-center mt-10">
-            <button class="cta-primary" onclick="window.location.href='http://infrahealth.com.s3-website-us-east-1.amazonaws.com/Contact.html';"><i data-lucide="eye"></i> See how this works</button>
+            <button class="cta-primary" onclick="window.location.href='contact.html';"><i data-lucide="eye"></i> See how this works</button>
             <button class="cta-secondary" onclick="document.getElementById('responsibility-section').scrollIntoView({behavior: 'smooth'});"><i data-lucide="refresh-cw"></i> Explore another role</button>
         </div>
     </div>
@@ -483,23 +571,33 @@
     </div>
 </header>
 
-<!-- ===== I AM RESPONSIBLE (only two cards: delivering care + member experiences) ===== -->
-<section id="responsibility-section" class="py-16 px-6 max-w-5xl mx-auto">
+<!-- ===== I AM RESPONSIBLE – two refined cards (delivering care + member experiences) ===== -->
+<section id="responsibility-section" class="py-16 px-6 max-w-6xl mx-auto">
     <div class="responsibility-cards">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-12 tracking-tight text-center md:text-left" data-aos="fade-right">I am responsible:</h2>
+        <h2 class="text-4xl md:text-6xl font-extrabold mb-12 tracking-tight text-center md:text-left" data-aos="fade-right">I am responsible:</h2>
         
-        <!-- Card 1: Delivering Care -->
-        <div class="wf-card" onclick="window.location.href='DeliveringCare.html';" data-aos="fade-up" data-aos-delay="50">
-            <h4>Delivering Care</h4>
-            <p>Clinical workflows, intake, and care team coordination. For hospitals, health systems, clinics, and physician groups.</p>
-            <button class="learn-more-btn">EXPLORE THIS ROLE →</button>
+        <!-- Card 1: Delivering Care (refined) -->
+        <div class="role-card" onclick="window.location.href='DeliveringCare.html';" data-aos="fade-up" data-aos-delay="50">
+            <div>
+                <span class="role-badge">02 // clinical workflows</span>
+                <h4>Delivering care</h4>
+                <div class="role-desc">Intake, coordination, hospitals & clinics.</div>
+            </div>
+            <div>
+                <button class="role-action" onclick="event.stopPropagation(); window.location.href='DeliveringCare.html';">EXPLORE →</button>
+            </div>
         </div>
 
-        <!-- Card 2: Member Experiences -->
-        <div class="wf-card" onclick="window.location.href='SupportingPatientService.html';" data-aos="fade-up" data-aos-delay="100">
-            <h4>Member Experiences</h4>
-            <p>Patient portals, engagement, and mobile-first journeys. For care coordinators, navigation services, and support teams.</p>
-            <button class="learn-more-btn">EXPLORE THIS ROLE →</button>
+        <!-- Card 2: Member Experiences (refined) -->
+        <div class="role-card" onclick="window.location.href='SupportingPatientService.html';" data-aos="fade-up" data-aos-delay="80">
+            <div>
+                <span class="role-badge">03 // engagement & support</span>
+                <h4>Member experiences</h4>
+                <div class="role-desc">Portals, navigation, mobile-first journeys.</div>
+            </div>
+            <div>
+                <button class="role-action" onclick="event.stopPropagation(); window.location.href='SupportingPatientService.html';">EXPLORE →</button>
+            </div>
         </div>
     </div>
 </section>
@@ -565,7 +663,7 @@
 
 <!-- FOOTER -->
 <footer class="py-24 text-center border-t border-slate-100 bg-white">
-    <button class="bg-black text-white px-12 py-5 rounded-full font-extrabold text-lg hover:bg-lime-500 transition" onclick="window.location.href='http://infrahealth.com.s3-website-us-east-1.amazonaws.com/Contact.html';">Contact</button>
+    <button class="bg-black text-white px-12 py-5 rounded-full font-extrabold text-lg hover:bg-lime-500 transition" onclick="window.location.href='contact.html';">Contact</button>
     <p class="mt-20 text-[9px] text-slate-300 font-extrabold uppercase tracking-[1.5em]">InfraHealth © 2026</p>
 </footer>
 
@@ -607,7 +705,4 @@
     });
 </script>
 </body>
-
 </html>
-
-
